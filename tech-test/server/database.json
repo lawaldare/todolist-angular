@@ -12,7 +12,7 @@
       "label": "Coding",
       "description": "Build a new project",
       "category": "project",
-      "done": false
+      "done": true
     },
     {
       "id": 49690543479700,
@@ -20,6 +20,13 @@
       "description": "I wanna teach her how to swim in her pool",
       "category": "Education",
       "done": false
+    },
+    {
+      "id": 78183510478827,
+      "label": "Movie",
+      "description": "I watched the matrix today with my girlfriend",
+      "category": "movie",
+      "done": true
     }
   ]
 }

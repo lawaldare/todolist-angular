@@ -10,6 +10,17 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 p {
   margin-bottom: 0 !important;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 40px;
+  border-radius: 20px;
 }

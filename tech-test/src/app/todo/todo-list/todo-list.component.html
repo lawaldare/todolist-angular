@@ -1,0 +1,45 @@
+<div class="container todo">
+  <h1 class="todo__header">Todos</h1>
+  <div class="todo__action">
+    <div class="form-floating my-3">
+      <input type="text" class="form-control w-100" id="searchTerm" [(ngModel)]='searchTerm' name="searchTerm"
+        placeholder="12345678987" required>
+      <label for="searchTerm">Search...</label>
+    </div>
+
+    <button class="btn" routerLink="/todos/add">Add todo!</button>
+
+  </div>
+  <div class="todo__table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of filteredTodos; let i = index">
+          <th>{{i+1}}</th>
+          <td>{{todo.label}}</td>
+          <td>{{todo.category | titlecase}}</td>
+          <td>{{todo.done? 'Completed' : 'Not Completed'}}</td>
+          <td>
+            <span class="view-btn mx-2" [routerLink]="['/todos', todo.id]">
+              <i class="fas fa-eye fa-1x"></i>
+            </span>
+            <span class="view-btn mx-2" [routerLink]="['/todos/edit', todo.id]">
+              <i class="fas fa-edit fa-1x"></i>
+            </span>
+            <span class="view-btn mx-2" (click)="deleteTodo(todo.id)">
+              <i class="fas fa-trash fa-1x"></i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="todo container" *ngIf="todo">
+
+  <small>TITLE</small>
+  <h1>{{todo.label}}</h1>
+
+  <small>DESCRIPTION</small>
+  <p>{{todo.description}}</p>
+
+  <small>STATUS</small>
+  <p>{{todo.done ? "Completed" : "Uncompleted"}}</p>
+
+</div>

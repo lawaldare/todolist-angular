@@ -3,16 +3,23 @@
     {
       "id": 1,
       "label": "Kitchen Cleanup",
-      "description":  "Clean my dirty kitchen",
+      "description": "Clean my dirty kitchen",
       "category": "house",
+      "done": true
+    },
+    {
+      "id": 19869068697770,
+      "label": "Coding",
+      "description": "Build a new project",
+      "category": "project",
       "done": false
     },
     {
-      "id": 2,
-      "label": "Taxes",
-      "description":  "Start doing my taxes and contact my accountant jhon for advice",
-      "category": "bureaucracy",
-      "done": "22-10-2019"
+      "id": 49690543479700,
+      "label": "Teaching",
+      "description": "I wanna teach her how to swim in her pool",
+      "category": "Education",
+      "done": false
     }
   ]
 }

@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="text-center">{{pageTitle}} Todo</h1>
+
+  <form #todoForm='ngForm' class="form">
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control w-100" id="title" [(ngModel)]='title' name="title"
+        placeholder="12345678987" required>
+      <label for="title">Title</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control w-100" id="description" [(ngModel)]='description' name="description"
+        placeholder="12345678987" required>
+      <label for="description">Description</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control w-100" id="category" [(ngModel)]='category' name="category"
+        placeholder="12345678987" required>
+      <label for="category">Category</label>
+    </div>
+
+    <ng-container *ngIf="id">
+      Completed? <input type="checkbox" [checked]="done" [value]="id" (change)="changeState($event)" />
+    </ng-container>
+    <button [disabled]="todoForm.invalid" class="btn col-12 mt-4 mb-3" *ngIf="!id" (click)="addTodo()">Add
+      todo!</button>
+
+    <button [disabled]="todoForm.invalid" class="btn col-12 mt-4 mb-3" *ngIf="id" (click)="updateTodo()">Update
+      todo!</button>
+
+  </form>
+</div>

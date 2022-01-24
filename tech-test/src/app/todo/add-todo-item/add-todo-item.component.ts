@@ -19,7 +19,11 @@ export class AddTodoItemComponent implements OnInit, OnDestroy {
   id: number;
   done: boolean;
 
-  sub = new Subscription();
+  addSub = new Subscription();
+  updateSub = new Subscription();
+  detailSub = new Subscription();
+
+
 
   constructor(private todoService: TodoService, private router: Router, private route: ActivatedRoute) { }
 
@@ -37,7 +41,7 @@ export class AddTodoItemComponent implements OnInit, OnDestroy {
 
 
   getTodoDetail(id) {
-    this.todoService.getTodo(id).subscribe((data: Todo) => {
+    this.detailSub = this.todoService.getTodo(id).subscribe((data: Todo) => {
       this.title = data.label;
       this.description = data.description;
       this.category = data.category;
@@ -59,7 +63,7 @@ export class AddTodoItemComponent implements OnInit, OnDestroy {
     payload.description = this.description;
     payload.category = this.category
     payload.done = false;
-    this.sub = this.todoService.addTodo(payload).subscribe(data => {
+    this.addSub = this.todoService.addTodo(payload).subscribe(data => {
       this.resetForm();
       this.router.navigate(['/todos'])
     }, error => {
@@ -73,7 +77,7 @@ export class AddTodoItemComponent implements OnInit, OnDestroy {
     payload.description = this.description;
     payload.category = this.category
     payload.done = this.done;
-    this.sub = this.todoService.updateTodo(this.id, payload).subscribe(data => {
+    this.updateSub = this.todoService.updateTodo(this.id, payload).subscribe(data => {
       this.resetForm();
       this.router.navigate(['/todos'])
     }, error => {
@@ -89,7 +93,9 @@ export class AddTodoItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.addSub.unsubscribe();
+    this.updateSub.unsubscribe();
+    this.detailSub.unsubscribe();
   }
 
 }

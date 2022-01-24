@@ -1,7 +1,7 @@
 import { TodoService } from './../todo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { error } from 'protractor';
+import { Subscription } from 'rxjs';
 
 
 export interface Todo {
@@ -17,10 +17,13 @@ export interface Todo {
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
 
   todos: Todo[];
   filteredTodos: Todo[];
+
+  deleteSub = new Subscription();
+  todosSub = new Subscription();
 
   private _searchTerm = "";
 
@@ -50,7 +53,7 @@ export class TodoListComponent implements OnInit {
 
 
   getTodos() {
-    this.todoService.getAllTodos().subscribe((data: Todo[]) => {
+    this.todosSub = this.todoService.getAllTodos().subscribe((data: Todo[]) => {
       this.todos = data;
       this.performFilter(this.searchTerm)
     }, error => {
@@ -63,11 +66,15 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteTodo(id: number) {
-    this.todoService.deleteTodo(id).subscribe(data => {
+    this.deleteSub = this.todoService.deleteTodo(id).subscribe(data => {
       this.getTodos();
     }, error => {
       console.log(error)
     })
   }
 
+  ngOnDestroy(): void {
+    this.deleteSub.unsubscribe();
+    this.todosSub.unsubscribe();
+  }
 }

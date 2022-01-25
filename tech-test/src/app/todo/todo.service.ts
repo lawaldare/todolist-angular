@@ -15,7 +15,7 @@ export class TodoService {
     return this.http.get(this.baseUrl);
   }
 
-  addTodo(payload: { id: number, title: string, description: string, done: boolean }) {
+  addTodo(payload: { id: number, label: string, description: string, done: boolean }) {
     return this.http.post(this.baseUrl, payload);
   }
 
